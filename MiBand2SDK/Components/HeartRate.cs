@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
+using Windows.Foundation;
 
 namespace MiBand2SDK.Components
 {
@@ -38,6 +39,20 @@ namespace MiBand2SDK.Components
             Debug.WriteLine("Subscribe to HeartRate notifications from band...");
             if (await _heartRateMeasurementCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify) == GattCommunicationStatus.Success)
                 _heartRateMeasurementCharacteristic.ValueChanged += HeartRateMeasurementCharacteristicValueChanged;
+        }
+
+        /// <summary>
+        /// Subscribe to HeartRate notifications from band.
+        /// </summary>
+        /// <param name="eventHandler">Handler for interact with heartRate values</param>
+        /// <returns></returns>
+        public async Task SubscribeToHeartRateNotificationsAsync(TypedEventHandler<GattCharacteristic, GattValueChangedEventArgs> eventHandler)
+        {
+            _heartRateMeasurementCharacteristic = await Gatt.GetCharacteristicByServiceUuid(HEART_RATE_SERVICE, HEART_RATE_MEASUREMENT_CHARACTERISTIC);
+
+            Debug.WriteLine("Subscribe to HeartRate notifications from band...");
+            if (await _heartRateMeasurementCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify) == GattCommunicationStatus.Success)
+                _heartRateMeasurementCharacteristic.ValueChanged += eventHandler;
         }
 
         /// <summary>
