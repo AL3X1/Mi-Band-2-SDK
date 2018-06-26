@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiBand2SDK.Models
+namespace MiBand2SDK.Enums
 {
-    public enum WristMode
+    public enum Gender
     {
-        ENABLED = 1,
-        DISABLED = 0
+        MALE = 0,
+        FEMALE = 1
     }
 }

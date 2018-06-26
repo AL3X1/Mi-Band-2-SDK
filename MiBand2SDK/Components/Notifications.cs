@@ -1,6 +1,6 @@
-﻿using MiBand2SDK.Models;
+﻿using MiBand2SDK.Enums;
+using MiBand2SDK.Models;
 using MiBand2SDK.Utils;
-using MiBandTracker.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

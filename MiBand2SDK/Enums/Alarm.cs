@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiBandTracker.SDK.Models
+namespace MiBand2SDK.Enums
 {
     public enum AlarmDays
     {

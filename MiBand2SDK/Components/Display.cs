@@ -1,12 +1,10 @@
-﻿using MiBand2SDK.Models;
+﻿using MiBand2SDK.Enums;
 using MiBand2SDK.Utils;
-using MiBandTracker.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 

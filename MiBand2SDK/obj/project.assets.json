@@ -27493,11 +27493,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\inoze\\source\\repos\\MiBand2SDK\\MiBand2SDK\\MiBand2SDK.csproj",
+      "projectUniqueName": "C:\\Users\\inoze\\source\\repos\\Mi-Band-2-SDK-Git\\MiBand2SDK\\MiBand2SDK.csproj",
       "projectName": "MiBand2SDK",
-      "projectPath": "C:\\Users\\inoze\\source\\repos\\MiBand2SDK\\MiBand2SDK\\MiBand2SDK.csproj",
+      "projectPath": "C:\\Users\\inoze\\source\\repos\\Mi-Band-2-SDK-Git\\MiBand2SDK\\MiBand2SDK.csproj",
       "packagesPath": "C:\\Users\\inoze\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\inoze\\source\\repos\\MiBand2SDK\\MiBand2SDK\\obj\\",
+      "outputPath": "C:\\Users\\inoze\\source\\repos\\Mi-Band-2-SDK-Git\\MiBand2SDK\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

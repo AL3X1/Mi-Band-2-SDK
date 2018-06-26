@@ -1,30 +1,22 @@
-﻿using MiBand2SDK.Models;
+﻿using MiBand2SDK.Enums;
 using MiBand2SDK.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 
 namespace MiBand2SDK.Components
 {
-    public class HeartRate : INotifyPropertyChanged
+    public class HeartRate
     {
-        private static int currentHeartRate = 0;
+        private static int lastHeartRate = 0;
 
-        public int CurrentHeartRate
+        public int LastHeartRate
         {
-            get { return currentHeartRate; }
-            set
-            {
-                currentHeartRate = value;
-                OnPropertyChanged();
-            }
+            get { return lastHeartRate; }
         }
 
         private EventWaitHandle _WaitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
@@ -33,11 +25,8 @@ namespace MiBand2SDK.Components
         private Guid HEART_RATE_MEASUREMENT_CHARACTERISTIC = new Guid("00002a37-0000-1000-8000-00805f9b34fb");
         private Guid HEART_RATE_CONTROLPOINT_CHARACTERISTIC = new Guid("00002a39-0000-1000-8000-00805f9b34fb");
         private byte[] HEART_RATE_START_COMMAND = new byte[] { 21, 2, 1 };
-        public event PropertyChangedEventHandler PropertyChanged;
         private GattCharacteristic _heartRateMeasurementCharacteristic;
         private GattCharacteristic _heartRateControlPointCharacteristic;
-
-        private void OnPropertyChanged() => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentHeartRate"));
 
         /// <summary>
         /// Subscribe to HeartRate notifications from band.
@@ -59,7 +48,7 @@ namespace MiBand2SDK.Components
         {
             int heartRate = 0;
             if (await StartHeartRateMeasurementAsync() == GattCommunicationStatus.Success)
-               heartRate = currentHeartRate;
+               heartRate = lastHeartRate;
 
             return heartRate;
         }
@@ -98,9 +87,9 @@ namespace MiBand2SDK.Components
         {
             Debug.WriteLine("Getting HeartRate");
             if (sender.Uuid.ToString() == HEART_RATE_MEASUREMENT_CHARACTERISTIC.ToString())
-                currentHeartRate = args.CharacteristicValue.ToArray()[1];
+                lastHeartRate = args.CharacteristicValue.ToArray()[1];
 
-            System.Diagnostics.Debug.WriteLine($"HeartRate is {currentHeartRate} bpm");
+            System.Diagnostics.Debug.WriteLine($"HeartRate is {lastHeartRate} bpm");
             _WaitHandle.Set();
         }
 

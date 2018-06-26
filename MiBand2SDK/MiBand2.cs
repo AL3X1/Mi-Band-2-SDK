@@ -1,20 +1,9 @@
 ﻿using MiBand2SDK.Components;
-using MiBand2SDK.Models;
 using MiBand2SDK.Utils;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
-using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
-using Windows.Foundation;
-using Windows.Storage;
-using Windows.Storage.Streams;
 
 namespace MiBand2SDK
 {
@@ -26,19 +15,8 @@ namespace MiBand2SDK
         public Display Display = new Display();
         public Activity Activity = new Activity();
         public HeartRate HeartRate = new HeartRate();
-        public Components.WearLocation WearLocation = new Components.WearLocation();
+        public WearLocation WearLocation = new WearLocation();
         public Notifications Notifications = new Notifications();
-
-        /// <summary>
-        /// Subscribe to all device events together
-        /// </summary>
-        /// <param name="deviceEventHandler">Handler to control touch events from Band</param>
-        /// <returns></returns>
-        public async Task SubscribeToAllNotificationsAsync(TypedEventHandler<GattCharacteristic, GattValueChangedEventArgs> deviceEventHandler)
-        {
-            await HeartRate.SubscribeToHeartRateNotificationsAsync();
-            await Device.SubscribeToDeviceEventNotificationsAsync(deviceEventHandler);
-        }
         
         /// <summary>
         /// Connect to paired device

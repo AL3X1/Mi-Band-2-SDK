@@ -1,4 +1,5 @@
-﻿using MiBand2SDK.Utils;
+﻿using MiBand2SDK.Enums;
+using MiBand2SDK.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,7 +17,7 @@ namespace MiBand2SDK.Components
         private Guid USER_SETTINGS_CHARACTERISTIC = new Guid("00000008-0000-3512-2118-0009af100700");
         private Guid CONFIGURATION_CHARACTERISTIC = new Guid("00000003-0000-3512-2118-0009af100700");
 
-        public async Task<bool> SetWearLocation(Models.WearLocation location)
+        public async Task<bool> SetWearLocation(Enums.WearLocation location)
         {
             GattCharacteristic wearLocationCharacteristic = await Gatt.GetCharacteristicByServiceUuid(MIBAND2_SERVICE, USER_SETTINGS_CHARACTERISTIC);
             byte[] setWearLocationCmd = new byte[] { 32, 0, 0, (byte)location };
@@ -24,7 +25,7 @@ namespace MiBand2SDK.Components
             return await wearLocationCharacteristic.WriteValueAsync(setWearLocationCmd.AsBuffer()) == GattCommunicationStatus.Success;
         }
 
-        public async Task<bool> SwitchInfoByRotateWrist(Models.WristMode mode)
+        public async Task<bool> SwitchInfoByRotateWrist(WristMode mode)
         {
             GattCharacteristic wearLocationCharacteristic = await Gatt.GetCharacteristicByServiceUuid(MIBAND2_SERVICE, CONFIGURATION_CHARACTERISTIC);
             byte[] switchInfoByRotateCmd = new byte[] { 6, 13, 0, (byte)mode };
@@ -32,7 +33,7 @@ namespace MiBand2SDK.Components
             return await wearLocationCharacteristic.WriteValueAsync(switchInfoByRotateCmd.AsBuffer()) == GattCommunicationStatus.Success;
         }
 
-        public async Task<bool> ActivateDisplayByRotateWrist(Models.WristMode mode)
+        public async Task<bool> ActivateDisplayByRotateWrist(WristMode mode)
         {
             GattCharacteristic wearLocationCharacteristic = await Gatt.GetCharacteristicByServiceUuid(MIBAND2_SERVICE, CONFIGURATION_CHARACTERISTIC);
             byte[] activateByRotateCmd = new byte[] { 6, 5, 0, (byte)mode };
