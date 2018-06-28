@@ -19,6 +19,16 @@ You need installed Visual Studio with UWP on the board.
 
 Minimum version: Windows 10.0.10586
 
+# Install
+
+You can install package via Package Manager:
+
+```C#
+Install-Package MiBand2SDK
+```
+
+or via NuGet in Visual Studio.
+
 # How to use
 
 **To avoid unhandled exceptions, first connect and pair (authenticate) Application with Mi Band 2.**
