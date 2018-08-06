@@ -37,7 +37,7 @@ or via NuGet in Visual Studio.
 
 ```C#
 // First initialize MiBand2 object to interact with Band.
-MiBand2 band = new MiBand2;
+MiBand2 band = new MiBand2();
 ```
 
 First you need find and connect device in Windows 10 manually.
